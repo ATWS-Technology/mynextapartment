@@ -1,0 +1,61 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "assets/fonts/Karla-Bold.ttf",
+      "sha1": "a0a8e53ce2548af4402bf8853fac9437ffd053d6"
+    },
+    {
+      "path": "assets/fonts/Karla-BoldItalic.ttf",
+      "sha1": "3c1b4a5f692f88342fb24c6851329e39810f0f60"
+    },
+    {
+      "path": "assets/fonts/Karla-ExtraBold.ttf",
+      "sha1": "5d1bac09643e60a5bcf6d5f2950b8719956a7933"
+    },
+    {
+      "path": "assets/fonts/Karla-ExtraBoldItalic.ttf",
+      "sha1": "29ba2cc42237613174239f212c198f551ddd3c77"
+    },
+    {
+      "path": "assets/fonts/Karla-ExtraLight.ttf",
+      "sha1": "3ddede14c37bd79cb4bad2f17ff905a79877b036"
+    },
+    {
+      "path": "assets/fonts/Karla-ExtraLightItalic.ttf",
+      "sha1": "a19abb9100b8639ee4154adfc0fa52db6792f7fa"
+    },
+    {
+      "path": "assets/fonts/Karla-Italic.ttf",
+      "sha1": "0a94ee3860d32d18d40a0db45aa4abc89629b065"
+    },
+    {
+      "path": "assets/fonts/Karla-Light.ttf",
+      "sha1": "01dd0de1c7ffe7da4358853da02fbe1a08463443"
+    },
+    {
+      "path": "assets/fonts/Karla-LightItalic.ttf",
+      "sha1": "4f886dbb0b73ed093fc1cd8ab6f08f1aa9a71ab0"
+    },
+    {
+      "path": "assets/fonts/Karla-Medium.ttf",
+      "sha1": "b6de3b6b01e06ba4f230b23f6fd47c9013ad713e"
+    },
+    {
+      "path": "assets/fonts/Karla-MediumItalic.ttf",
+      "sha1": "9feb69022655f7cdf573a5d11f71a798e35efaed"
+    },
+    {
+      "path": "assets/fonts/Karla-Regular.ttf",
+      "sha1": "081a2b3ebb5fdea155114529f57a1e94b89ab7ed"
+    },
+    {
+      "path": "assets/fonts/Karla-SemiBold.ttf",
+      "sha1": "257aa91bf24e60f9662e98678e5438d125a6d114"
+    },
+    {
+      "path": "assets/fonts/Karla-SemiBoldItalic.ttf",
+      "sha1": "cbb7b83f1673f1bd79b29a319fb4a459eeb0b546"
+    }
+  ]
+}
