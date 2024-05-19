@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import {
   ActionSheetIOS,
   TouchableOpacity,
@@ -24,9 +25,11 @@ import FormInput from '../../components/FormInput';
 import {useCustomNotificationContext} from '../../components/contexts/notification-context';
 import {RegularText} from '../../components/text/text';
 import {Image} from 'react-native-svg';
-import {fontSz, hp, wp} from '../../utils';
+import {fontSz, hp} from '../../utils';
 import {Button} from '../../components/common/Button';
 import {useDispatch} from 'react-redux';
+import utils from '../../utils/utils';
+import {setCredential} from '../../services/auth';
 
 export type NavigationProp = NativeStackNavigationProp<
   rootStackParamList,
@@ -50,10 +53,10 @@ const LoginScreen = ({route, navigation}: AuthProps) => {
   const [passwordError, setPasswordError] = useState('');
 
   const [emailError, setEmailError] = useState('');
-
   const [userName, setUserName] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
-  const [loginFunction, {isLoading, isError}] = useLoginMutation();
+  const [loginFunction, {isError}] = useLoginMutation();
 
   function isEnableSignIn() {
     return phoneNumber != '' && password != '' && passwordError == '';
@@ -61,24 +64,45 @@ const LoginScreen = ({route, navigation}: AuthProps) => {
 
   const dispatch = useDispatch();
 
-  const login = (val: LoginRequest) => {
-    loginFunction(val)
-      .unwrap()
-      .then((res: UserResponse) => {
-        console.log('login function', res);
-        dispatch(
-          setCredential({
-            user: res?.data,
-            token: res?.data?.token,
-          }),
-        );
-      })
-      .catch(err => {
-        notificationContext.showNotification(
-          `${err?.data?.message}.`,
-          'warning',
-        );
-      });
+  // const login = (val: LoginRequest) => {
+  //   loginFunction(val)
+  //     .unwrap()
+  //     .then((res: UserResponse) => {
+  //       console.log('login function', res);
+  //       dispatch(
+  //         setCredential({
+  //           user: res?.data,
+  //           token: res?.data?.token,
+  //         }),
+  //       );
+  //     })
+  //     .catch(err => {
+  //       notificationContext.showNotification(
+  //         `${err?.data?.message}.`,
+  //         'warning',
+  //       );
+  //     });
+  // };
+
+  const login = () => {
+    // Simulate successful login
+    // const fakeUserResponse: UserResponse = {
+    //   data: {
+    //     token: 'fakeToken',
+    //     // Add other user data as needed
+    //   },
+    // };
+
+    // Dispatch action to set user credentials (token)
+    // dispatch(
+    //   setCredential({
+    //     user: fakeUserResponse.data,
+    //     token: fakeUserResponse.data.token,
+    //   }),
+    // );
+
+    // Navigate to the dashboard screen
+    navigate('Dashboard');
   };
 
   // function navigate(arg0: string) {
@@ -88,15 +112,15 @@ const LoginScreen = ({route, navigation}: AuthProps) => {
   return (
     <AuthLayout
       title={'Login'}
-      subTitle="Kindly provide the following information to login to your account"
-      titleContainerStyle={undefined}
+      subTitle=""
+      titleContainerStyle={{paddingTop: 20}}
       children={
         <>
           <View style={{flex: 1}}>
             <FormInput
               containerStyle={undefined}
               value={email}
-              label={''}
+              label={'Email Address'}
               placeholder={'Phone No or email address'}
               inputStyle={undefined}
               prependComponent={undefined}
@@ -116,10 +140,10 @@ const LoginScreen = ({route, navigation}: AuthProps) => {
             />
 
             <FormInput
-              // label="Password"
+              label={'Password'}
+              containerStyle={{marginTop: 20}}
               secureTextEntry={!showPassword}
               keyboardType="default"
-              containerStyle={{marginTop: 10}}
               autoCompleteType="password"
               onChange={(value: React.SetStateAction<string>) => {
                 setPassword(value);
@@ -166,15 +190,22 @@ const LoginScreen = ({route, navigation}: AuthProps) => {
               onFocus={() => {}}
               value={undefined}
               onEndEditing={() => {}}
-              label={undefined}
             />
 
             <TouchableOpacity
-              style={{marginTop: 10}}
+              style={{
+                marginTop: 10,
+              }}
               onPress={() => {
                 navigate('ForgotPassword');
               }}>
-              <Text style={{color: COLORS.purple}}>Forgotten password ?</Text>
+              <Text
+                style={{
+                  color: COLORS.purple,
+                  textAlign: 'right',
+                }}>
+                Forgotten password ?
+              </Text>
             </TouchableOpacity>
 
             {/* login-button */}
@@ -186,9 +217,10 @@ const LoginScreen = ({route, navigation}: AuthProps) => {
               }}
               textStyle={{
                 fontWeight: '700',
-                color: COLORS.primary,
+                color: COLORS.primaryBg,
               }}
               onPress={() => {
+                setIsLoading(true);
                 isEnableSignIn()
                   ? login({
                       phone: phoneNumber,
@@ -210,21 +242,26 @@ const LoginScreen = ({route, navigation}: AuthProps) => {
               }}
               textStyle={{
                 fontWeight: '700',
-                color: COLORS.primary,
+                color: COLORS.primaryBg,
               }}
-              onPress={() => {}}
-              isLoading={isLoading}
+              // onPress={() => {
+              //   setIsLoading(true);
+              // }}
+              // isLoading={isLoading}
               prependComponent={undefined}
               appendComponent={undefined}
             />
             <View style={styles.already}>
-              <Text style={styles.alreadyText}>I don’t have an account.</Text>
+              <Text style={styles.alreadyText}>I don’t have an account? </Text>
               <TouchableOpacity
                 onPress={() => {
-                  navigate('CreateAccount');
+                  navigate('SignUp');
                 }}>
-                <Text style={{color: '#79477d', fontFamily: 'Besley-Regular'}}>
-                  {' '}
+                <Text
+                  style={{
+                    color: COLORS.purple,
+                    fontFamily: FONTS.fontFamilyExtraBold,
+                  }}>
                   Create free account
                 </Text>
               </TouchableOpacity>

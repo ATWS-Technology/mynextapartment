@@ -102,7 +102,6 @@ const FormInput = (props: {
             color: COLORS.textDark,
             fontFamily: FONTS.fontFamily,
             fontSize: SIZES.font,
-            // fontStyle: FONTS.fontStyle,
             fontWeight: '500',
           }}>
           {label}
@@ -112,7 +111,6 @@ const FormInput = (props: {
             color: COLORS.error,
             fontFamily: FONTS.fontFamilyRegular,
             fontSize: SIZES.font,
-            // fontStyle: FONTS.fontFamilyRegular,
             fontWeight: '500',
           }}>
           {errorMsg}
@@ -151,7 +149,6 @@ const FormInput = (props: {
             value={value}
             placeholderTextColor={COLORS.placeholder}
             onChangeText={text => onChange(text)}
-            onEndEditing={text => onEndEditing(text)}
             onFocus={text => onFocus()}
             secureTextEntry={secureTextEntry}
             keyboardType={keyboardType}

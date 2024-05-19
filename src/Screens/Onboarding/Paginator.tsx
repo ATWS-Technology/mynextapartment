@@ -1,10 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import {
-  StyleSheet,
-  View,
-  Animated,
-  useWindowDimensions,
-} from 'react-native';
+import {StyleSheet, View, Animated, useWindowDimensions} from 'react-native';
 import React from 'react';
 import {COLORS} from '../../theme/theme';
 
@@ -15,8 +10,6 @@ const Paginator = ({data, scrollX}: any) => {
     <View
       style={{
         flexDirection: 'row',
-        height: 64,
-        backgroundColor: 'white',
         justifyContent: 'center',
       }}>
       {data.map((_: any, i: number) => {

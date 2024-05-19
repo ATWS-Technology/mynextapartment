@@ -5,7 +5,8 @@ import OtpVerifyScreen from '../Screens/MainScreen/OtpVerifyScreen';
 import SplashScreen from '../Screens/MainScreen/SplashScreen';
 import OnBoardingScreen from '../Screens/Onboarding/OnboardingScreen';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import SignUpScreen from '../Screens/MainScreen/SignInScreen';
+import SignUpScreen from '../Screens/MainScreen/SignUpScreen';
+import ForgotPassword from '../Screens/MainScreen/ForgotPassword';
 
 const Stack = createNativeStackNavigator<rootStackParamList>();
 
@@ -15,6 +16,7 @@ export type rootStackParamList = {
   Login: undefined;
   OTPVerify: undefined;
   Onboarding: undefined;
+  ForgotPassword: undefined;
 };
 
 const Loading = () => {
@@ -43,9 +45,14 @@ const AuthenticationStack = () => {
       <Stack.Screen
         name="SignUp"
         component={SignUpScreen}
-        options={{headerShown: false, presentation: 'fullScreenModal'}}
+        options={{headerShown: false, presentation: 'modal'}}
       />
       <Stack.Screen name="Login" component={LoginScreen} />
+      <Stack.Screen
+        name="ForgotPassword"
+        component={ForgotPassword}
+        options={{headerShown: false, presentation: 'modal'}}
+      />
       <Stack.Screen name="OTPVerify" component={OtpVerifyScreen} />
     </Stack.Navigator>
   );

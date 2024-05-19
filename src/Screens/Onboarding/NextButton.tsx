@@ -27,7 +27,7 @@ const NextButton: React.FC<MyComponentProps> = ({
   currentViewIndex,
 }) => {
   const size = 60;
-  const strokeWidth = 2;
+  const strokeWidth = 4;
   const center = size / 2;
   const radius = size / 2 - strokeWidth / 2;
 
@@ -71,7 +71,7 @@ const NextButton: React.FC<MyComponentProps> = ({
       {currentViewIndex === slides.length - 1 ? (
         <View style={styles.container}>
           <TouchableOpacity
-            style={styles.btn}
+            style={[styles.btn, {width: 'auto'}]}
             onPress={() => navigation.navigate('Login')}>
             <Text style={{color: COLORS.placeholder}}>GET STARTED</Text>
           </TouchableOpacity>
@@ -79,7 +79,7 @@ const NextButton: React.FC<MyComponentProps> = ({
       ) : (
         <View style={styles.container}>
           <View style={{position: 'relative'}}>
-            <Svg width={size} height={size}>
+            <Svg width={size} height={size} margin={2}>
               <G rotation="-90" origin={center}>
                 <Circle
                   stroke="#f3f3f3"
@@ -99,34 +99,26 @@ const NextButton: React.FC<MyComponentProps> = ({
                 />
               </G>
             </Svg>
+
             <TouchableOpacity
               onPress={scrollTo}
               style={styles.button}
-              activeOpacity={0.9}>
+              activeOpacity={1}>
               <Image
-                source={require('../../asset/onBoarding/next.png')}
+                source={require('../../../src/asset/images/next.png')}
                 style={{
-                  width: 30,
-                  height: 30,
-                  backgroundColor: 'white',
-                  zIndex: 1,
-                  borderRadius: 15,
+                  width: 20,
+                  height: 20,
                   justifyContent: 'center',
                   alignSelf: 'center',
                 }}
               />
             </TouchableOpacity>
           </View>
-          <View
-            style={{
-              justifyContent: 'center',
-              alignItems: 'center',
-              backgroundColor: 'white',
-            }}>
-            <TouchableOpacity style={styles.btn} onPress={skip}>
-              <Text style={{color: COLORS.placeholder}}>Skip</Text>
-            </TouchableOpacity>
-          </View>
+
+          <TouchableOpacity style={styles.btn} onPress={skip}>
+            <Text style={{color: COLORS.placeholder}}>Skip</Text>
+          </TouchableOpacity>
         </View>
       )}
     </>
@@ -140,19 +132,18 @@ const styles = StyleSheet.create({
     flex: 0.3,
     alignItems: 'center',
     justifyContent: 'space-evenly',
-    backgroundColor: 'white',
     flexDirection: 'row',
+    gap: 50,
   },
   button: {
     position: 'absolute',
-    borderRadius: 15,
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 15,
+    padding: 20,
   },
   btn: {
     backgroundColor: 'white',
-    borderRadius: 100,
+    borderRadius: 50,
     alignItems: 'center',
     justifyContent: 'center',
     padding: 12,
@@ -160,5 +151,7 @@ const styles = StyleSheet.create({
     shadowColor: 'black',
     shadowOpacity: 0.5,
     elevation: 5,
+    width: 80,
+    height: 40,
   },
 });

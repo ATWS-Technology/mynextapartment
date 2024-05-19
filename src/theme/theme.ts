@@ -21,7 +21,7 @@ export const COLORS = {
   error: '#EE404C',
   logout: '#FEF8F6',
   transparent: 'transparent',
-  purple: '#79477d',
+  purple: '#222831',
 };
 
 export const SIZES = {
