@@ -1,74 +1,10 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {StyleSheet, Text, TextInput, View} from 'react-native';
 import {COLORS, FONTS, SIZES} from '../../theme/theme';
 import {fontSz, wp} from '../../utils';
 
-const FormInput = (props: {
-  containerStyle: any;
-  value: any;
-  label: any;
-  placeholder: any;
-  inputStyle: any;
-  prependComponent: any;
-  appendComponent: any;
-  onChange: any;
-  onEndEditing: any;
-  onFocus: any;
-  secureTextEntry: any;
-  keyboardType?:
-    | 'default'
-    | 'email-address'
-    | 'numeric'
-    | 'phone-pad'
-    | 'number-pad'
-    | 'decimal-pad'
-    | undefined;
-  autoCompleteType?:
-    | 'off'
-    | 'birthdate-day'
-    | 'birthdate-full'
-    | 'birthdate-month'
-    | 'birthdate-year'
-    | 'cc-csc'
-    | 'cc-exp'
-    | 'cc-exp-day'
-    | 'cc-exp-month'
-    | 'cc-exp-year'
-    | 'cc-number'
-    | 'email'
-    | 'gender'
-    | 'name'
-    | 'name-family'
-    | 'name-given'
-    | 'name-middle'
-    | 'name-middle-initial'
-    | 'name-prefix'
-    | 'name-suffix'
-    | 'password'
-    | 'password-new'
-    | 'postal-address'
-    | 'postal-address-country'
-    | 'postal-address-extended'
-    | 'postal-address-extended-postal-code'
-    | 'postal-address-locality'
-    | 'postal-address-region'
-    | 'postal-code'
-    | 'street-address'
-    | 'sms-otp'
-    | 'tel'
-    | 'tel-country-code'
-    | 'tel-national'
-    | 'tel-device'
-    | 'username'
-    | 'username-new'
-    | 'off'
-    | undefined;
-  autoCapitalize?: 'none' | undefined;
-  errorMsg?: string | undefined;
-  multiline?: boolean | undefined;
-  numberOfLines?: number;
-  isLoading?: boolean;
-}) => {
+const FormInput = props => {
   const {
     value,
     containerStyle,
@@ -88,40 +24,27 @@ const FormInput = (props: {
     multiline = false,
     numberOfLines = 1,
     isLoading = false,
+    inputHeight = 40,
   } = props;
+
   return (
     <View style={{...containerStyle}}>
-      {/* Label and error message */}
-      <View
+      {/* Label */}
+      <Text
         style={{
-          flexDirection: 'row',
-          justifyContent: 'space-between',
+          color: COLORS.textDark,
+          fontFamily: FONTS.fontFamily,
+          fontSize: SIZES.font,
+          fontWeight: '500',
         }}>
-        <Text
-          style={{
-            color: COLORS.textDark,
-            fontFamily: FONTS.fontFamily,
-            fontSize: SIZES.font,
-            fontWeight: '500',
-          }}>
-          {label}
-        </Text>
-        <Text
-          style={{
-            color: COLORS.error,
-            fontFamily: FONTS.fontFamilyRegular,
-            fontSize: SIZES.font,
-            fontWeight: '500',
-          }}>
-          {errorMsg}
-        </Text>
-      </View>
+        {label}
+      </Text>
 
       {/* Text Input */}
       <View
         style={{
           flexDirection: 'row',
-          height: 50,
+          alignItems: 'center',
           marginTop: SIZES.base,
           borderBottomColor: COLORS.divider,
           borderBottomWidth: fontSz(1),
@@ -130,12 +53,7 @@ const FormInput = (props: {
         {prependComponent}
 
         {isLoading ? (
-          <View
-            style={{
-              flex: 1,
-              alignItems: 'center',
-              alignSelf: 'center',
-            }}>
+          <View style={{flex: 1, alignItems: 'center', alignSelf: 'center'}}>
             {/* <FormInputLoader /> */}
           </View>
         ) : (
@@ -144,6 +62,8 @@ const FormInput = (props: {
               flex: 1,
               ...inputStyle,
               color: COLORS.black,
+              height: inputHeight,
+              fontSize: SIZES.InputFont,
             }}
             placeholder={placeholder}
             value={value}
@@ -161,10 +81,20 @@ const FormInput = (props: {
 
         {appendComponent}
       </View>
+
+      {/* Error Message */}
+      <Text
+        style={{
+          color: COLORS.error,
+          fontFamily: FONTS.fontFamilyRegular,
+          fontSize: SIZES.font,
+          fontWeight: '500',
+          marginTop: SIZES.base,
+        }}>
+        {errorMsg}
+      </Text>
     </View>
   );
 };
 
 export default FormInput;
-
-const styles = StyleSheet.create({});

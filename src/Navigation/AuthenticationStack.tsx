@@ -7,6 +7,7 @@ import OnBoardingScreen from '../Screens/Onboarding/OnboardingScreen';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import SignUpScreen from '../Screens/MainScreen/SignUpScreen';
 import ForgotPassword from '../Screens/MainScreen/ForgotPassword';
+import AppLanding from '../Screens/MainScreen/AppLanding';
 
 const Stack = createNativeStackNavigator<rootStackParamList>();
 
@@ -54,6 +55,7 @@ const AuthenticationStack = () => {
         options={{headerShown: false, presentation: 'modal'}}
       />
       <Stack.Screen name="OTPVerify" component={OtpVerifyScreen} />
+      <Stack.Screen name="AppLanding" component={AppLanding} />
     </Stack.Navigator>
   );
 };

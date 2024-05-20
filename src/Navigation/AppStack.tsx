@@ -78,7 +78,7 @@ const AppTabAndStack = () => {
           // }
         })}
       />
-      <Tab.Screen
+      {/* <Tab.Screen
         name="OrderStack"
         component={OrderStack}
         options={{
@@ -117,7 +117,7 @@ const AppTabAndStack = () => {
             />
           ),
         }}
-      />
+      /> */}
     </Tab.Navigator>
   );
 };

@@ -26,10 +26,12 @@ export const COLORS = {
 
 export const SIZES = {
   // global sizes
-  base: 8,
-  font: 14,
+  base: 12,
+  font: 18,
+  InputFont: 18,
   radius: 12,
   padding: 24,
+  padding2: 18,
   bodySmall: 20,
   // app dimensions
   width,

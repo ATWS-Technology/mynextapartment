@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, {FunctionComponent, useState} from 'react';
 import {
   StyleSheet,
@@ -8,8 +9,8 @@ import {
   Image,
   Pressable,
 } from 'react-native';
-import {fontSz, hp, wp} from '../../../utils';
-import {LocationLightIcon} from '../../assets/images/svg';
+import {fontSz, hp, wp} from '../../utils';
+import {LocationLightIcon} from '../../asset/svg/location.svg';
 import {COLORS, SIZES} from '../../constants/theme';
 import {Text} from './Text';
 
@@ -104,10 +105,10 @@ const SearchBarWithAutocomplete: FunctionComponent<SearchBarProps> = props => {
           flexDirection: 'row',
           height: 50,
           paddingHorizontal: SIZES.h4,
-          borderRadius: SIZES.base,
+          borderRadius: SIZES.padding,
           borderColor: COLORS.createOne,
           borderWidth: fontSz(1),
-          backgroundColor: 'rgba(179, 179, 179, 0.05)',
+          backgroundColor: '#E3E3E7',
         }}>
         <View
           style={{
@@ -120,11 +121,11 @@ const SearchBarWithAutocomplete: FunctionComponent<SearchBarProps> = props => {
               height: 18,
               width: 18,
             }}
-            source={require('../../assets/icons/search.png')}
+            source={require('../../asset/svg/search-normal.png')}
           />
           <TextInput
             style={[inputStyle]}
-            placeholder="Enter your address"
+            placeholder="Search address, city, location"
             placeholderTextColor="gray"
             value={value}
             onChangeText={onChangeText}
@@ -134,7 +135,7 @@ const SearchBarWithAutocomplete: FunctionComponent<SearchBarProps> = props => {
               setInputSize({height, width});
             }}
           />
-          {value.length > 0 && (
+          {value?.length > 0 && (
             <Pressable
               style={styles.cancelContainer}
               onPress={() => {
@@ -147,7 +148,7 @@ const SearchBarWithAutocomplete: FunctionComponent<SearchBarProps> = props => {
                   width: 18,
                   transform: [{rotate: '45deg'}],
                 }}
-                source={require('../../assets/icons/add.png')}
+                source={require('../../asset/svg/filter.png')}
               />
             </Pressable>
           )}

@@ -26,7 +26,7 @@ export const COLORS = {
   disabledButton: 'rgba(209, 209, 211, 1)',
   disabledButtonText: 'rgba(139, 140, 145, 1)',
   transparentPrimary: '#73e8ff',
-  transparentPrimray: '#90e0ef', // 013476
+  transparentPrimray: '#90e0ef',
   secondary: '#00b4d8',
   orange: '#FFA133',
   lightOrange: '#FFA133',
@@ -48,6 +48,8 @@ export const COLORS = {
   ash: '#F2F2F2',
   deepAsh: '#C4C4C4',
   divider: '##E5E5E5',
+  primary: '#04100F',
+
 
   transparent: 'transparent',
   transparentBlack1: 'rgba(0, 0, 0, 0.1)',

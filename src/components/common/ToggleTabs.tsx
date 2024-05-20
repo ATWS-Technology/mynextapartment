@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {useState} from 'react';
 import {View, StyleSheet, Text, Pressable} from 'react-native';
-import {fontSz} from '../../../utils';
+import {fontSz} from '../../utils';
 import {COLORS} from '../../constants/theme';
 
 function ToggleTabs({
@@ -17,33 +17,24 @@ function ToggleTabs({
   firstLabel?: string;
   secondLabel?: string;
 }) {
-  const [current, setCurrent] = useState('');
   const [first, setFirst] = useState(true);
-  const [completed, setCompleted] = useState(false);
   const [second, setSecond] = useState(false);
 
   useEffect(() => {
-    setFirst(currentTab === 'first' ? true : false);
+    setFirst(currentTab === 'first');
     selectedTab(currentTab);
-    setCompleted(false);
-    setSecond(currentTab === 'second' ? true : false);
+    setSecond(currentTab === 'second');
   }, [currentTab]);
 
   const toggle = (e: string) => {
     if (e === 'first') {
-      console.log('first in toggle');
       setFirst(true);
       selectedTab('first');
-      setCompleted(false);
       setSecond(false);
     } else if (e === 'second') {
-      console.log('second in toggle');
       setFirst(false);
-      setCompleted(false);
       setSecond(true);
       selectedTab('second');
-    } else {
-      return;
     }
   };
 
@@ -61,9 +52,9 @@ function ToggleTabs({
           styles.pill,
           {
             backgroundColor: first
-              ? COLORS.primaryYellow
+              ? COLORS.primary
               : COLORS.searchBackgroundColor,
-            paddingHorizontal: small ? 10 : 60,
+            paddingHorizontal: small ? 10 : 20,
             paddingVertical: small ? 5 : 10,
           },
         ]}
@@ -72,7 +63,7 @@ function ToggleTabs({
           style={[
             styles.title,
             {
-              color: first ? 'rgba(5, 5, 7, 1)' : COLORS.lightCreateOne,
+              color: first ? '#ffffff' : COLORS.lightCreateOne,
               fontSize: small ? fontSz(13) : fontSz(13.5),
               fontWeight: first ? '500' : '400',
             },
@@ -85,9 +76,9 @@ function ToggleTabs({
           styles.pill,
           {
             backgroundColor: second
-              ? COLORS.primaryYellow
+              ? COLORS.primary
               : COLORS.searchBackgroundColor,
-            paddingHorizontal: small ? 10 : 60,
+            paddingHorizontal: small ? 10 : 20,
             paddingVertical: small ? 5 : 10,
           },
         ]}
@@ -96,7 +87,7 @@ function ToggleTabs({
           style={[
             styles.title,
             {
-              color: second ? 'rgba(5, 5, 7, 1)' : COLORS.lightCreateOne,
+              color: second ? '#ffffff' : COLORS.lightCreateOne,
               fontSize: small ? fontSz(13) : fontSz(13.5),
               fontWeight: second ? '500' : '400',
             },
@@ -116,18 +107,21 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 5,
     backgroundColor: COLORS.searchBackgroundColor,
-    height: 40,
-    borderRadius: 9,
+    borderRadius: 20,
+    paddingVertical: 10,
+    marginVertical: 10,
   },
   pill: {
-    paddingHorizontal: 40,
-    paddingVertical: 7.5,
-    borderRadius: 7,
     justifyContent: 'center',
     alignItems: 'center',
+    borderRadius: 20,
+    flex: 1,
+    marginHorizontal: 5,
+    marginVertical: 20,
+    height: 40,
   },
   title: {
-    color: 'white',
+    textAlign: 'center',
   },
 });
 

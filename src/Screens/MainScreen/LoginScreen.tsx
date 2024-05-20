@@ -64,50 +64,47 @@ const LoginScreen = ({route, navigation}: AuthProps) => {
 
   const dispatch = useDispatch();
 
-  // const login = (val: LoginRequest) => {
-  //   loginFunction(val)
-  //     .unwrap()
-  //     .then((res: UserResponse) => {
-  //       console.log('login function', res);
-  //       dispatch(
-  //         setCredential({
-  //           user: res?.data,
-  //           token: res?.data?.token,
-  //         }),
-  //       );
-  //     })
-  //     .catch(err => {
-  //       notificationContext.showNotification(
-  //         `${err?.data?.message}.`,
-  //         'warning',
-  //       );
-  //     });
-  // };
-
   const login = () => {
-    // Simulate successful login
-    // const fakeUserResponse: UserResponse = {
-    //   data: {
-    //     token: 'fakeToken',
-    //     // Add other user data as needed
-    //   },
-    // };
+    // Reset error messages
+    setEmailError('');
+    setPasswordError('');
 
-    // Dispatch action to set user credentials (token)
-    // dispatch(
-    //   setCredential({
-    //     user: fakeUserResponse.data,
-    //     token: fakeUserResponse.data.token,
-    //   }),
-    // );
+    // Validate email
+    const emailCheck = utils.isValidEmail(email);
+    if (!emailCheck) {
+      setEmailError('Please enter a valid email');
+    }
 
-    // Navigate to the dashboard screen
-    navigate('Dashboard');
+    // Validate password
+    if (password.length < 6) {
+      setPasswordError('Password must be at least 6 characters long');
+    }
+
+    // If both fields are valid, proceed with the login
+    if (emailCheck && password.length >= 6) {
+      setIsLoading(true);
+      // Simulate successful login
+      // const fakeUserResponse: UserResponse = {
+      //   data: {
+      //     token: 'fakeToken',
+      //     // Add other user data as needed
+      //   },
+      // };
+
+      // Dispatch action to set user credentials (token)
+      // dispatch(
+      //   setCredential({
+      //     user: fakeUserResponse.data,
+      //     token: fakeUserResponse.data.token,
+      //   }),
+      // );
+
+      // Navigate to the dashboard screen
+      navigate('AppLanding');
+    } else {
+      setIsLoading(false);
+    }
   };
-
-  // function navigate(arg0: string) {
-  //   throw new Error('Function not implemented.');
-  // }
 
   return (
     <AuthLayout
@@ -137,6 +134,7 @@ const LoginScreen = ({route, navigation}: AuthProps) => {
               onEndEditing={() => {}}
               onFocus={() => {}}
               secureTextEntry={undefined}
+              errorMsg={emailError}
             />
 
             <FormInput
@@ -188,25 +186,44 @@ const LoginScreen = ({route, navigation}: AuthProps) => {
               inputStyle={undefined}
               prependComponent={undefined}
               onFocus={() => {}}
-              value={undefined}
+              value={password}
               onEndEditing={() => {}}
             />
 
-            <TouchableOpacity
+            <View
               style={{
+                flexDirection: 'row',
+                justifyContent: 'space-between',
                 marginTop: 10,
-              }}
-              onPress={() => {
-                navigate('ForgotPassword');
               }}>
-              <Text
+              <TouchableOpacity
                 style={{
-                  color: COLORS.purple,
-                  textAlign: 'right',
+                  marginTop: 10,
+                }}
+                onPress={() => {}}>
+                <Text
+                  style={{
+                    color: COLORS.purple,
+                  }}>
+                  Remember me
+                </Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                style={{
+                  marginTop: 10,
+                }}
+                onPress={() => {
+                  navigate('ForgotPassword');
                 }}>
-                Forgotten password ?
-              </Text>
-            </TouchableOpacity>
+                <Text
+                  style={{
+                    color: COLORS.purple,
+                  }}>
+                  Forgotten password ?
+                </Text>
+              </TouchableOpacity>
+            </View>
 
             {/* login-button */}
             <Button
@@ -219,16 +236,7 @@ const LoginScreen = ({route, navigation}: AuthProps) => {
                 fontWeight: '700',
                 color: COLORS.primaryBg,
               }}
-              onPress={() => {
-                setIsLoading(true);
-                isEnableSignIn()
-                  ? login({
-                      phone: phoneNumber,
-                      password,
-                      social: false,
-                    })
-                  : null;
-              }}
+              onPress={login}
               isLoading={isLoading}
               prependComponent={undefined}
               appendComponent={undefined}
@@ -251,6 +259,23 @@ const LoginScreen = ({route, navigation}: AuthProps) => {
               prependComponent={undefined}
               appendComponent={undefined}
             />
+            <Button
+              title="Sign in Facebook"
+              style={{
+                backgroundColor: COLORS.purple,
+                marginTop: hp(15),
+              }}
+              textStyle={{
+                fontWeight: '700',
+                color: COLORS.primaryBg,
+              }}
+              // onPress={() => {
+              //   setIsLoading(true);
+              // }}
+              // isLoading={isLoading}
+              prependComponent={undefined}
+              appendComponent={undefined}
+            />
             <View style={styles.already}>
               <Text style={styles.alreadyText}>I don’t have an account? </Text>
               <TouchableOpacity
@@ -261,8 +286,9 @@ const LoginScreen = ({route, navigation}: AuthProps) => {
                   style={{
                     color: COLORS.purple,
                     fontFamily: FONTS.fontFamilyExtraBold,
+                    fontSize: SIZES.font,
                   }}>
-                  Create free account
+                  Create account
                 </Text>
               </TouchableOpacity>
             </View>
