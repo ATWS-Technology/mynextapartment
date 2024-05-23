@@ -15,14 +15,11 @@ const CardList = ({
     price: number;
   }>;
 }) => {
-  function formatAmount(amount) {
-    // Convert the amount to a string and split it into integer and decimal parts
+  function formatAmount(amount: number) {
     let parts = amount.toString().split('.');
 
-    // Add commas for thousands separator to the integer part
     parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
-    // Join the parts back together
     return parts.join('.');
   }
   return (
