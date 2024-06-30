@@ -9,33 +9,30 @@ import {
   View,
 } from 'react-native';
 import React, {useState} from 'react';
+import SearchBarWithAutocomplete from '../../components/common/SearchBarWithAutocomplete';
 import {COLORS, FONTS, SIZES} from '../../theme/theme';
 import {fontSz} from '../../utils';
 import CardList from '../../components/common/CardList';
 import ToggleTabs from '../../components/common/ToggleTabs';
 import ActiveCard from '../../components/common/ActiveCard';
-import SearchBarWithNavigation from '../../components/common/SearchBarWithavigation';
-import {NavigationContainer} from '@react-navigation/native';
-import {createMaterialBottomTabNavigator} from 'react-native-paper/react-navigation';
 
-const Tab = createMaterialBottomTabNavigator();
-
-export function MyTabs() {
-  return (
-    <Tab.Navigator
-      initialRouteName="Home"
-      activeColor="#f0edf6"
-      inactiveColor="#3e2465"
-      barStyle={{backgroundColor: '#694fad'}}>
-      <Tab.Screen name="Home" component={AppLanding} />
-      {/* <Tab.Screen name="Settings" component={SettingsScreen} /> */}
-    </Tab.Navigator>
-  );
-}
 const AppLanding = () => {
   const [selectedTab, setSelectedTab] = useState('first');
+
+  const [searchValue, setSearchValue] = useState('');
+  const [searchPredictions, setSearchPredictions] = useState([]);
+  const [showPredictions, setShowPredictions] = useState(false); // Initialize with false
+  const handleSearchChange = text => {
+    setSearchValue(text);
+    // setSearchValue(text);
+    // Implement logic to fetch predictions based on the current search text
+    // and update the search predictions state accordingly
+    setShowPredictions(true);
+  };
+
   const handleTabSelect = (tab: string) => {
     setSelectedTab(tab);
+    console.log('Selected tab:', tab);
   };
 
   const cardsData = [
@@ -154,7 +151,7 @@ const AppLanding = () => {
   ];
 
   return (
-    <NavigationContainer>
+    <>
       <SafeAreaView
         style={{
           flex: 1,
@@ -166,7 +163,7 @@ const AppLanding = () => {
           style={{flex: 1, paddingHorizontal: SIZES.padding2}}
           showsVerticalScrollIndicator={false}>
           <Text style={{fontSize: fontSz(16), fontFamily: FONTS.fontFamily}}>
-            Your current location
+            Your current locations
           </Text>
           <View
             style={{
@@ -189,7 +186,20 @@ const AppLanding = () => {
               />
             </TouchableOpacity>
           </View>
-          <SearchBarWithNavigation />
+          {/* <SearchBarWithAutocomplete
+            value={value}
+            setSearch={setSearch}
+            onChangeText={onChangeText}
+            predictions={predictions}
+          /> */}
+          <SearchBarWithAutocomplete
+            value={searchValue}
+            setSearch={setSearchValue}
+            onChangeText={handleSearchChange}
+            predictions={[]} // Pass your predictions here
+            showPredictions={showPredictions} // Pass showPredictions state variable
+            setShowPredictions={setShowPredictions} // Pass setShowPredictions function
+          />
           <View style={{paddingVertical: 20}}>
             <Text
               style={{
@@ -323,7 +333,7 @@ const AppLanding = () => {
           </View>
         </ScrollView>
       </SafeAreaView>
-    </NavigationContainer>
+    </>
   );
 };
 

@@ -100,7 +100,7 @@ const LoginScreen = ({route, navigation}: AuthProps) => {
       // );
 
       // Navigate to the dashboard screen
-      navigate('MyTabs');
+      navigate('AppLanding');
     } else {
       setIsLoading(false);
     }
@@ -138,7 +138,7 @@ const LoginScreen = ({route, navigation}: AuthProps) => {
             />
 
             <FormInput
-              label={'Password'}
+              label={'Passworddddd'}
               containerStyle={{marginTop: 20}}
               secureTextEntry={!showPassword}
               keyboardType="default"

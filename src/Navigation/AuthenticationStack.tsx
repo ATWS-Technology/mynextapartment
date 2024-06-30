@@ -1,14 +1,13 @@
 import {ActivityIndicator, View} from 'react-native';
 import React from 'react';
-import LoginScreen from '../Screens/MainScreen/LoginScreen';
-import OtpVerifyScreen from '../Screens/MainScreen/OtpVerifyScreen';
-import SplashScreen from '../Screens/MainScreen/SplashScreen';
+import LoginScreen from '../Screens/AuthScreen/LoginScreen';
+import OtpVerifyScreen from '../Screens/AuthScreen/OtpVerifyScreen';
+import SplashScreen from '../Screens/AuthScreen/SplashScreen';
 import OnBoardingScreen from '../Screens/Onboarding/OnboardingScreen';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import SignUpScreen from '../Screens/MainScreen/SignUpScreen';
-import ForgotPassword from '../Screens/MainScreen/ForgotPassword';
-import AppLanding from '../Screens/MainScreen/AppLanding';
-import { MyTabs } from '../Screens/AuthScreen/AppLanding';
+import SignUpScreen from '../Screens/AuthScreen/SignUpScreen';
+import ForgotPassword from '../Screens/AuthScreen/ForgotPassword';
+import AppLanding from '../Screens/AuthScreen/AppLanding';
 
 const Stack = createNativeStackNavigator<rootStackParamList>();
 
@@ -19,7 +18,6 @@ export type rootStackParamList = {
   OTPVerify: undefined;
   Onboarding: undefined;
   ForgotPassword: undefined;
-  MyTabs: undefined;
 };
 
 const Loading = () => {
@@ -48,7 +46,7 @@ const AuthenticationStack = () => {
       <Stack.Screen
         name="SignUp"
         component={SignUpScreen}
-        options={{headerShown: false, presentation: 'modal'}}
+        options={{presentation: 'modal'}}
       />
       <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen
@@ -57,8 +55,7 @@ const AuthenticationStack = () => {
         options={{headerShown: false, presentation: 'modal'}}
       />
       <Stack.Screen name="OTPVerify" component={OtpVerifyScreen} />
-      {/* <Stack.Screen name="AppLanding" component={AppLanding} /> */}
-      <Stack.Screen name="MyTabs" component={MyTabs} />
+      <Stack.Screen name="AppLanding" component={AppLanding} />
     </Stack.Navigator>
   );
 };
