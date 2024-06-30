@@ -34,14 +34,12 @@ const SignUpScreen = () => {
     lastName: string;
     email: string;
     phoneNumber: string;
-    bvn: string;
     password: string;
   }>({
     firstName: '',
     lastName: '',
     email: '',
     phoneNumber: '',
-    bvn: '',
     password: '',
   });
 
@@ -60,7 +58,7 @@ const SignUpScreen = () => {
   };
   const [errors, setErrors] = useState({
     phoneNumber: '',
-    bvn: '',
+    // bvn: '',
     email: '',
   });
 
@@ -246,7 +244,7 @@ const SignUpScreen = () => {
             onEndEditing={() => {}}
           />
 
-          <FormInput
+          {/* <FormInput
             containerStyle={{marginTop: 20}}
             value={form.bvn}
             label={'BVN'}
@@ -260,7 +258,7 @@ const SignUpScreen = () => {
             onFocus={() => {}}
             secureTextEntry={undefined}
           />
-          {bvnError ? <Text style={{color: 'red'}}>{bvnError}</Text> : null}
+          {bvnError ? <Text style={{color: 'red'}}>{bvnError}</Text> : null} */}
 
           {/* <DatePicker
             modal
