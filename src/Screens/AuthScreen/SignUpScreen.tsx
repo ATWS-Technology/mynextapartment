@@ -35,12 +35,14 @@ const SignUpScreen = () => {
     email: string;
     phoneNumber: string;
     bvn: string;
+    password: string;
   }>({
     firstName: '',
     lastName: '',
     email: '',
     phoneNumber: '',
     bvn: '',
+    password: '',
   });
 
   const [phoneNumberError, setPhoneNumberError] = useState('');
@@ -48,6 +50,9 @@ const SignUpScreen = () => {
   const [bvnError, setBvnError] = useState<string>('');
   const [open, setOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [passwordError, setPasswordError] = useState('');
+  const [password, setPassword] = useState<string>('');
 
   const handleDateChange = (selectedDate: Date) => {
     setDob(selectedDate);
@@ -189,6 +194,59 @@ const SignUpScreen = () => {
           />
 
           <FormInput
+            label={'Password'}
+            containerStyle={{marginTop: 20}}
+            secureTextEntry={!showPassword}
+            keyboardType="default"
+            autoCompleteType="password"
+            onChange={(value: React.SetStateAction<string>) => {
+              setPassword(value);
+              if (value.length < 6 && value.length > 0) {
+                // setPasswordError('Pasword');
+              } else if (
+                value.length > 6 ||
+                value.length === 6 ||
+                value.length === 0
+              ) {
+                setPasswordError('');
+              }
+            }}
+            errorMsg={passwordError}
+            appendComponent={
+              <View
+                style={{
+                  justifyContent: 'center',
+                }}>
+                {showPassword ? (
+                  <Pressable onPress={() => setShowPassword(!showPassword)}>
+                    <RegularText
+                      color={COLORS.purple}
+                      style={{fontWeight: '400'}}
+                      fontSize={14}>
+                      {'Hide'}
+                    </RegularText>
+                  </Pressable>
+                ) : (
+                  <Pressable onPress={() => setShowPassword(!showPassword)}>
+                    <RegularText
+                      color={COLORS.purple}
+                      style={{fontWeight: '400'}}
+                      fontSize={14}>
+                      {'Show'}
+                    </RegularText>
+                  </Pressable>
+                )}
+              </View>
+            }
+            placeholder={'Password'}
+            inputStyle={undefined}
+            prependComponent={undefined}
+            onFocus={() => {}}
+            value={password}
+            onEndEditing={() => {}}
+          />
+
+          <FormInput
             containerStyle={{marginTop: 20}}
             value={form.bvn}
             label={'BVN'}
@@ -204,16 +262,16 @@ const SignUpScreen = () => {
           />
           {bvnError ? <Text style={{color: 'red'}}>{bvnError}</Text> : null}
 
-          <DatePicker
+          {/* <DatePicker
             modal
             open={open}
             mode="date"
             date={dob}
             onConfirm={handleDateChange}
             onCancel={() => setOpen(false)}
-          />
+          /> */}
 
-          <FormInput
+          {/* <FormInput
             containerStyle={{marginTop: 20}}
             value={dob ? dob.toDateString() : ''}
             label={'Date of Birth'}
@@ -224,7 +282,7 @@ const SignUpScreen = () => {
             onFocus={() => setOpen(true)}
             secureTextEntry={undefined}
             onChange={undefined}
-          />
+          /> */}
 
           {/* login-button */}
           <Button

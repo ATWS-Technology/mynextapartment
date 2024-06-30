@@ -138,7 +138,7 @@ const LoginScreen = ({route, navigation}: AuthProps) => {
             />
 
             <FormInput
-              label={'Passworddddd'}
+              label={'Password'}
               containerStyle={{marginTop: 20}}
               secureTextEntry={!showPassword}
               keyboardType="default"
