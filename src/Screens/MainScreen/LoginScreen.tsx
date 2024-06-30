@@ -100,7 +100,7 @@ const LoginScreen = ({route, navigation}: AuthProps) => {
       // );
 
       // Navigate to the dashboard screen
-      navigate('AppLanding');
+      navigate('MyTabs');
     } else {
       setIsLoading(false);
     }

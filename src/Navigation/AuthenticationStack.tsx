@@ -8,6 +8,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import SignUpScreen from '../Screens/MainScreen/SignUpScreen';
 import ForgotPassword from '../Screens/MainScreen/ForgotPassword';
 import AppLanding from '../Screens/MainScreen/AppLanding';
+import { MyTabs } from '../Screens/AuthScreen/AppLanding';
 
 const Stack = createNativeStackNavigator<rootStackParamList>();
 
@@ -18,6 +19,7 @@ export type rootStackParamList = {
   OTPVerify: undefined;
   Onboarding: undefined;
   ForgotPassword: undefined;
+  MyTabs: undefined;
 };
 
 const Loading = () => {
@@ -55,7 +57,8 @@ const AuthenticationStack = () => {
         options={{headerShown: false, presentation: 'modal'}}
       />
       <Stack.Screen name="OTPVerify" component={OtpVerifyScreen} />
-      <Stack.Screen name="AppLanding" component={AppLanding} />
+      {/* <Stack.Screen name="AppLanding" component={AppLanding} /> */}
+      <Stack.Screen name="MyTabs" component={MyTabs} />
     </Stack.Navigator>
   );
 };

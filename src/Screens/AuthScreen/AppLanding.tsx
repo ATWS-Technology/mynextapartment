@@ -15,7 +15,23 @@ import CardList from '../../components/common/CardList';
 import ToggleTabs from '../../components/common/ToggleTabs';
 import ActiveCard from '../../components/common/ActiveCard';
 import SearchBarWithNavigation from '../../components/common/SearchBarWithavigation';
+import {NavigationContainer} from '@react-navigation/native';
+import {createMaterialBottomTabNavigator} from 'react-native-paper/react-navigation';
 
+const Tab = createMaterialBottomTabNavigator();
+
+export function MyTabs() {
+  return (
+    <Tab.Navigator
+      initialRouteName="Home"
+      activeColor="#f0edf6"
+      inactiveColor="#3e2465"
+      barStyle={{backgroundColor: '#694fad'}}>
+      <Tab.Screen name="Home" component={AppLanding} />
+      {/* <Tab.Screen name="Settings" component={SettingsScreen} /> */}
+    </Tab.Navigator>
+  );
+}
 const AppLanding = () => {
   const [selectedTab, setSelectedTab] = useState('first');
   const handleTabSelect = (tab: string) => {
@@ -138,7 +154,7 @@ const AppLanding = () => {
   ];
 
   return (
-    <>
+    <NavigationContainer>
       <SafeAreaView
         style={{
           flex: 1,
@@ -307,7 +323,7 @@ const AppLanding = () => {
           </View>
         </ScrollView>
       </SafeAreaView>
-    </>
+    </NavigationContainer>
   );
 };
 
